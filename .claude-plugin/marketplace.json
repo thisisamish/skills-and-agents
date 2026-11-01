@@ -1,0 +1,11 @@
+{
+  "name": "amish",
+  "owner": { "name": "Amish Verma" },
+  "plugins": [
+    {
+      "name": "amish-skills",
+      "source": "./",
+      "description": "Amish Verma's personal skills and agents."
+    }
+  ]
+}
