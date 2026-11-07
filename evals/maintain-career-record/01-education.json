@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "maintain-career-record",
+    "setup-career-skills",
+    "capture-work-experience"
+  ],
+  "query": "Add my degree: B.Tech in Computer Science from Example Institute of Technology, 2019 to 2023, CGPA 7.90 out of 10.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Writes education.yaml with the score value quoted exactly as \"7.90\" (not 7.9, not rounded)",
+    "Appends a NOTES.md entry using a timestamp from timestamp.py",
+    "Runs validate.py until 0 errors, then render.py"
+  ]
+}

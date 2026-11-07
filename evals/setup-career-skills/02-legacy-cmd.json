@@ -1,0 +1,13 @@
+{
+  "skills": [
+    "setup-career-skills",
+    "maintain-career-record",
+    "capture-work-experience"
+  ],
+  "query": "Set up career tracking. I already have a career/CMD.md from the old skill.",
+  "files": [],
+  "expected_behavior": [
+    "Does not overwrite or delete career/CMD.md",
+    "After setup, offers migration through maintain-career-record's migration guide"
+  ]
+}

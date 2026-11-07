@@ -1,0 +1,53 @@
+
+schema_version: 1
+id: 3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012
+status: confirmed
+role_id: role-1
+engagement_id: eng-1
+period: {start: "2025-01", end: "2025-03"}
+title: Cut settlement report latency
+category: performance
+situation: Settlement reports for the banking client's operations team took too long to use interactively.
+task: Make the report endpoint fast enough for interactive use without changing its output.
+actions:
+  - Profiled the slowest queries and added two PostgreSQL composite indexes.
+  - Rewrote two report queries to avoid full-table scans and verified output against the old version.
+team_context: Team of 6; I owned the reporting service; a teammate reviewed the index changes.
+scale: About 12,000 report requests per day.
+technologies: [Java, Spring Boot, PostgreSQL]
+outcome: Operations staff now run reports interactively instead of scheduling them overnight.
+metrics:
+  - name: p95 latency
+    before: "410"
+    after: "238"
+    unit: ms
+    period: "2025-Q1"
+    source: service monitoring dashboard
+    confidence: measured
+    user_confirmed: true
+evidence:
+  - {type: dashboard, ref: "latency panel of the reporting service, before and after the release"}
+  - {type: pr, ref: "index and query changes, reviewed by a teammate"}
+sde2_signals:
+  design_ownership: ""
+  alternatives_considered: "Considered caching report results; rejected because reports must reflect same-day settlements."
+  reliability_or_scaling: ""
+  mentoring: ""
+  incident_ownership: ""
+interview:
+  obstacles: "Report output had to stay byte-identical for downstream reconciliation."
+  tradeoffs: "Indexes slowed nightly bulk inserts slightly; measured and accepted."
+  what_failed: "The first index choice didn't help the second query."
+  lessons: "Profile before tuning; check write-path cost of new indexes."
+  competencies: [ownership, problem_solving]
+bullets:
+  - id: b-1
+    text: Reduced p95 latency of a settlement reporting API from 410 ms to 238 ms by adding PostgreSQL composite indexes and rewriting queries across 12,000 daily requests.
+    tracks: [backend]
+    status: confirmed
+similar_to: []
+gaps: []
+follow_up: null
+sources: ["2025-03-14T10:02:00+05:30"]
+created: "2025-03-14"
+updated: "2025-03-14"

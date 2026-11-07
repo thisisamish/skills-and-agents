@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "maintain-career-record",
+    "setup-career-skills",
+    "capture-work-experience"
+  ],
+  "query": "Review my career record. What's missing?",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Runs render.py and uses the Open items section",
+    "Reports concrete gaps (e.g. empty education, projects, headlines; skills evidence) without inventing content",
+    "Offers next steps such as a capture-work-experience session"
+  ]
+}

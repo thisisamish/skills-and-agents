@@ -1,0 +1,10 @@
+schema_version: 1
+skills:
+- name: Java
+  category: language
+  evidence:
+  - 3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012
+- name: PostgreSQL
+  category: database
+  evidence:
+  - 3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012

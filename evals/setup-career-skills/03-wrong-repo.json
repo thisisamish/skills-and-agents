@@ -1,0 +1,12 @@
+{
+  "skills": [
+    "setup-career-skills",
+    "maintain-career-record",
+    "capture-work-experience"
+  ],
+  "query": "Set up career skills here.  [run inside the skills-and-agents repository itself]",
+  "files": [],
+  "expected_behavior": [
+    "Recognises this is the skills repository and asks where the user's private career data should live instead of creating career/ here"
+  ]
+}

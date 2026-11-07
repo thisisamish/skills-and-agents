@@ -1,0 +1,15 @@
+{
+  "skills": [
+    "maintain-career-record",
+    "setup-career-skills",
+    "capture-work-experience"
+  ],
+  "query": "I just finished migrating our batch jobs to AWS Lambda and it cut costs a lot. Can you add that to my career record?",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Recognises this as a specific piece of work and follows capture-work-experience (split/interview/check) rather than writing it directly",
+    "Asks how much costs fell and how the user knows, instead of writing 'a lot' as a result"
+  ]
+}

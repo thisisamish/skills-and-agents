@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "Turn this into a resume bullet: Delivered 17+ user stories and resolved 11+ defects across C/C++, Java, SQL and Bash in two mission-critical features of an enterprise energy management product.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Keeps the counts as legitimate measures; does not call them hollow or tell the user to drop them",
+    "Asks what changed because of the work (e.g. release unblocked, customer impact) and what the user personally did",
+    "Does not invent an outcome, metric or scale that the user did not state"
+  ]
+}

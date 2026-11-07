@@ -1,0 +1,9 @@
+# Durable learning, not courses alone.
+schema_version: 1
+learning: []
+# - id: learn-1
+#   topic: ""
+#   why: ""
+#   what: ""
+#   applied_in: []            # accomplishment or project ids
+#   date: "2025-02"

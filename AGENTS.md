@@ -19,6 +19,7 @@ The career skills form **one suite**: they help a software engineer keep a struc
 
 ## The career suite
 
+- The suite today: `setup-career-skills` (environment and first-time setup), `maintain-career-record` (record owner) and `capture-work-experience` (STAR capture). Planned: `build-resume`, `optimise-resume-for-jd`, `prepare-interview-stories`.
 - The career skills are always installed together. A skill may rely on its sibling skills being present and refer to their files by a path relative to its own folder (for example `../maintain-career-record/scripts/validate.py`). Each skill says in its instructions that it needs the whole suite.
 - `maintain-career-record` owns the career record's data format and the shared scripts. Other skills read and write the record only through that format and run the shared scripts; they don't keep their own copies.
 - Skills that generate career material (bullets, resumes, interview stories) use only facts the user has confirmed in the record and never invent facts, numbers, titles or dates.
@@ -37,6 +38,7 @@ The career skills form **one suite**: they help a software engineer keep a struc
 - Scripts need Python 3.9 or later and PyYAML. Nothing else outside the standard library.
 - In this repo, use the uv-managed virtual environment: run `uv sync` to create `.venv`, then run scripts and tests with `.venv/Scripts/python` (Windows) or `.venv/bin/python`. Never install packages globally with pip.
 - Add new dependencies to `pyproject.toml` with `uv add`, not by hand-installing them.
+- In a user's career repo, the skills use `career/.venv`, which setup-career-skills creates with uv from `maintain-career-record/scripts/requirements.txt`.
 
 ## Adding things
 

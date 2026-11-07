@@ -32,10 +32,13 @@ While the repo is private, your machine must be signed in to GitHub with access 
 
 ### Career
 
-The career skills are one suite and must be installed together. They write to the repo you run them in, under `career/`, never to this repo. They are being rebuilt according to [the plan](docs/PLAN.md), which is grounded in [this research](docs/research/reports/SWE%20resumes%20for%20India%20job%20switchers.md).
+The career skills are one suite and must be installed together. They write to the repo you run them in, under `career/`, never to this repo. The design follows [the plan](docs/PLAN.md), which is grounded in [this research](docs/research/reports/SWE%20resumes%20for%20India%20job%20switchers.md).
 
-- [maintain-career-record](skills/career/maintain-career-record/SKILL.md) — keep an evidence-backed career record and turn it into resumes and interview material.
-- [capture-work-experience](skills/career/capture-work-experience/SKILL.md) — capture work experience as STAR-format accomplishments and resume bullets.
+- [setup-career-skills](skills/career/setup-career-skills/SKILL.md) — run first: checks the suite is installed, creates the record's Python environment with uv (`career/.venv`, PyYAML only) and the `career/` record.
+- [maintain-career-record](skills/career/maintain-career-record/SKILL.md) — keep the evidence-backed career record (profile, employment, skills, education, projects, goals) as YAML with an audit log and a generated `CAREER.md`; migrate an old `CMD.md`.
+- [capture-work-experience](skills/career/capture-work-experience/SKILL.md) — capture pieces of work as STAR accomplishments and resume bullets that use only confirmed facts.
+
+Resume building, job-description tailoring and interview preparation are planned but not built yet.
 
 ## Development
 
@@ -46,6 +49,13 @@ uv sync
 ```
 
 This creates `.venv`. Run scripts and tests with its Python; don't install packages globally.
+
+```
+.venv/Scripts/python -m unittest discover tests    # Windows
+.venv/bin/python -m unittest discover tests        # macOS/Linux
+```
+
+Evaluation scenarios and triggering queries for each skill are in [evals/](evals/).
 
 ## Agents
 

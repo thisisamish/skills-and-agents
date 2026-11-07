@@ -1,0 +1,17 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "I optimised our Oracle ingestion pipeline at Example Corp with batching and retries so it can take up to 300k log entries every 15 minutes. Save this experience.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Asks for the improvement achieved (before/after throughput, failure rate or similar) and suggests concrete places to find it (logs, DB monitoring, load test)",
+    "Treats '300k log entries every 15 minutes' as scale or load, not as the result",
+    "Does not write or save a bullet containing an improvement figure the user did not give",
+    "Does not save the record as confirmed; saves as incomplete only after the user explicitly accepts the missing metric as a gap"
+  ]
+}

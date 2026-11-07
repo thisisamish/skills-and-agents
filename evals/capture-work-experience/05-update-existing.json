@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "Quick update on the settlement report work: after the release, nightly scheduled report jobs dropped from 40 to 0 because everyone runs them on demand now.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Finds the existing accomplishment 3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012 and treats this as an update, keeping its id",
+    "Adds the new metric with user_confirmed only after confirming it with the user, and appends a NOTES.md entry with the new timestamp in sources",
+    "Runs validate.py until 0 errors and render.py"
+  ]
+}

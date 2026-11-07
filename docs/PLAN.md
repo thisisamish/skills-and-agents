@@ -1,6 +1,13 @@
 # Plan: an evidence-backed career record system
 
-Status: proposed, 2026-11-07. Decisions D1–D4 resolved the same day. Nothing in this plan has been implemented yet.
+Status: Phases 0–5 implemented on 2026-11-07. The future skills (`build-resume`, `optimise-resume-for-jd`, `prepare-interview-stories`) are not built yet. Evaluation results are in [evals/RESULTS.md](../evals/RESULTS.md).
+
+**Changes from the original plan, made during implementation:**
+- **New skill:** `setup-career-skills`, the suite's entry point. It checks that every skill is installed, creates `career/.venv` with uv (PyYAML only), creates the record, and hands any legacy data to the migration guide. This settles the runtime convention left open in §4.
+- **Employer link:** accomplishments link to a `role_id`, whose employer is the employer of record, instead of carrying both `employer_id` and `role_id`.
+- **Unknown values:** dates may be `YYYY` or empty, and an accomplishment period is optional (validate.py warns). `nda` may be `unknown`. Metrics gain a `reported` confidence level. Every entry may carry `notes` and `gaps`.
+- **New script:** `timestamp.py` gives NOTES.md headings the real local time.
+- **Bytecode:** scripts never write `__pycache__` into the skill folder.
 
 ## 1. Goal
 

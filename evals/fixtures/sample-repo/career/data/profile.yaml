@@ -1,0 +1,11 @@
+schema_version: 1
+name: Asha Example
+location: Bengaluru
+email: asha@example.com
+phone: ''
+links:
+  linkedin: ''
+  github: ''
+  portfolio: ''
+headlines: []
+updated: ''

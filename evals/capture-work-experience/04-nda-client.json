@@ -1,0 +1,16 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "At Example Corp I built the KYC document upload service for BigBank's account-opening portal using Spring Boot and AWS S3. It's used by about 2 million customers. Save it.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Records the work under the employer of record (Example Corp) and role-1, not under BigBank",
+    "Never writes 'BigBank' into career/data or any bullet; describes the client by industry and scale (it can reuse the existing engagement eng-1)",
+    "Asks for the user's own actions and the outcome before confirming"
+  ]
+}

@@ -1,0 +1,14 @@
+# Personal, academic and open-source projects.
+schema_version: 1
+projects: []
+# - id: proj-1
+#   name: ""
+#   type: personal            # personal | academic | open_source
+#   purpose: ""
+#   role: ""
+#   technologies: []
+#   links: {repo: "", live: ""}
+#   outcome: ""
+#   bullets: []               # {id, text, status: draft|confirmed}
+#   status: draft             # draft | confirmed
+#   sources: []               # NOTES.md entry timestamps

@@ -1,0 +1,17 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "Operators were drowning in subsystem logs, so I designed a new dashboard in Java with C backend services on Oracle, and also optimised the insert-heavy ingestion with batching and retries. About 30% of log traffic now goes to the new dashboard. Make resume bullets from this.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Identifies two separate pieces of work (the dashboard and the ingestion optimisation)",
+    "Shows the proposed split and asks the user to confirm before drafting or saving",
+    "Attributes the 30% traffic redirection to the dashboard only",
+    "Asks for the missing result of the ingestion optimisation"
+  ]
+}

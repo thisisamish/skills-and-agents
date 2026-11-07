@@ -1,0 +1,14 @@
+{
+  "skills": [
+    "setup-career-skills",
+    "maintain-career-record",
+    "capture-work-experience"
+  ],
+  "query": "Set up the career skills in this repo.",
+  "files": [],
+  "expected_behavior": [
+    "Checks that the sibling skills maintain-career-record and capture-work-experience are present",
+    "Creates career/.venv with uv and installs PyYAML from requirements.txt into it, never globally",
+    "Runs init.py, then validate.py (0 errors) and render.py, and reports versions and results"
+  ]
+}
