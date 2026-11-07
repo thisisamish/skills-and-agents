@@ -1,0 +1,12 @@
+# Contact details and headline candidates. City only, no full address.
+schema_version: 1
+name: ""
+location: ""          # city, e.g. "Bengaluru"
+email: ""
+phone: ""
+links:
+  linkedin: ""
+  github: ""
+  portfolio: ""
+headlines: []         # optional 1-2 line headlines: {id, text, status: draft|confirmed}
+updated: ""           # YYYY-MM-DD

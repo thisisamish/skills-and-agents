@@ -1,0 +1,7 @@
+# Aspirations. These are goals, not evidence, and never appear on a resume as achievements.
+schema_version: 1
+target_roles: []              # e.g. "SDE-1 backend"
+target_employers: []          # kinds of company, e.g. "product startups", "GCCs"
+short_term: []
+medium_term: []
+long_term: []

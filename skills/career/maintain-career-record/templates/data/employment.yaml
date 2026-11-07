@@ -1,0 +1,21 @@
+# Employers of record, roles and client engagements.
+# Always record the employer that pays you, never a client in its place.
+schema_version: 1
+employers: []
+# - id: emp-1
+#   legal_name: "Example Corp Pvt. Ltd."     # full legal name
+#   display_name: "Example Corp"
+#   location: "Noida"
+#   roles:
+#     - id: role-1
+#       title: "Systems Engineer"            # full official title, no abbreviations
+#       type: full_time                      # full_time | internship | contract | part_time
+#       start: "2023-07"                     # YYYY-MM
+#       end: present                         # YYYY-MM or present
+#       summary: ""
+#       engagements:                         # client work under this role
+#         - id: eng-1
+#           client_descriptor: "Tier-1 retail banking platform"   # never the client's name if under NDA
+#           nda: true                        # true | false | unknown
+#           domain: "banking"
+#           scale: ""

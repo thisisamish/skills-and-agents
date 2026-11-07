@@ -1,0 +1,9 @@
+# Skills, each linked to the accomplishments or projects that show it.
+# A skill with no evidence is not used on a resume.
+schema_version: 1
+skills: []
+# - name: Java
+#   category: language       # language | framework | database | cloud | devops | tool | concept | other
+#   depth: proficient         # working | proficient | expert (optional)
+#   evidence: [<accomplishment or project id>]
+#   last_used: "2025"

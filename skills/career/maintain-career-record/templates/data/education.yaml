@@ -1,0 +1,10 @@
+# Degrees. Record scores exactly as on the mark sheet; never round.
+schema_version: 1
+education: []
+# - id: edu-1
+#   degree: "B.Tech"
+#   field: "Computer Science and Engineering"
+#   institution: ""
+#   start: "2019-08"
+#   end: "2023-06"
+#   score: {type: cgpa, value: "7.99", scale: "10"}   # type: cgpa | percentage

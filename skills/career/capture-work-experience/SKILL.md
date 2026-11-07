@@ -1,92 +1,116 @@
 ---
 name: capture-work-experience
-description: "Maintain a database of a software engineer's work experience in STAR format (Situation, Task, Action, Result). Use it when user asks to save work experience in bullet point(s)."
+description: Captures a software engineer's work as STAR (Situation, Task, Action, Result) accomplishments with evidence-backed resume bullets, and saves them into the career record kept by maintain-career-record. Splits descriptions that mix several pieces of work, interviews the user for missing details without inventing any, and checks every bullet before saving. Use when the user says "save this experience", asks for a resume bullet or STAR bullet, pastes a description of work they did, adds a piece of work to their career record, or gives a missing metric, detail or correction for an existing accomplishment. Profile, education, employers, roles and personal projects belong to maintain-career-record.
+compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Needs Python 3.9+ with PyYAML in career/.venv, created by setup-career-skills.
+metadata:
+  version: 2.0.0
+  suite: career
 ---
 
-The task is to have a living document of everything the user has worked on in his software engineering career categorised by the organisation and saved in STAR (Situation, Task, Action, Result) format.
+# Capture work experience
 
-The database is a simple markdown file and its format has been provided to you in `EXPERIENCE_DB_FORMAT.md` (in this skill's folder). Never store user data inside the skill's folder. The database lives in the user's current repository at `career/EXPERIENCE_DB.md`; if the repository already keeps career files in another folder, use that folder instead, and if it is unclear, ask the user. There should be only one database per repository. If the file exists, add new information to it. If it doesn't exist, let the user know and create one. Ask them the name of the person for whom this DB is being created. Put that in <SWE_NAME>. Every piece of information added to `EXPERIENCE_DB.md` should be recorded in `changelog.json` next to it, for history and audit purposes. The schema of the changelog has been provided to you in `changelog_schema.json` (in this skill's folder). If the file exists, add new information to it. If it doesn't exist, let the user know and create one.
+Turn what the user did at work into accomplishment records that hold up in background checks and interview follow-up questions, plus resume bullets drawn only from those records.
 
-## Process
+## Paths used below
 
-### 1. Gain complete information
+- **Record:** `career/` in the user's repository. Its format is in `../maintain-career-record/references/schema.md`.
+- **Python:** `career/.venv/Scripts/python.exe` on Windows or `career/.venv/bin/python` elsewhere, written `PY`. Always call it by this path.
+- **Scripts:** the full path of `../maintain-career-record/scripts/` (relative to this skill's folder), written `SCRIPTS`. Run commands from the root of the user's repository.
 
-Whatever the user described as having done in their career should have the following information:
+If `career/data/` is missing or `PY -c "import yaml"` fails, run setup-career-skills first. If the role this work belongs to isn't in `career/data/employment.yaml`, add it following maintain-career-record before saving.
 
-1. The organisation where they did this work
-2. Situation - the context behind the work
-3. Task - what you were required to achieve
-4. Action - what you actually did (keywords, tech stack they used)
-5. Result - what was the outcome (metrics)
+## Rules
 
-If the user has not provided any of these, interview them until you get the complete information. Do not move forward until you have received all the information. NEVER fabricate details.
+- **Never invent** a fact, number, technology, scale or outcome. If it isn't from the user, it isn't in the record or the bullet.
+- **The user's own work.** Record what the user personally did in `actions`; what the team did goes in `team_context`. Ask "what did you do, and what did others do?" when the user says "we".
+- **Employer of record.** Client work is recorded under the user's employer. The client is described by industry and scale, never named if it may be under NDA. If you don't know whether it is, ask whether the client's name and absolute figures (users, revenue) may be stated, and don't name the client meanwhile.
+- **Confidentiality.** Never record source code, credentials, internal URLs or system names, customer names, screenshots or proprietary details. Generalise instead ("a synchronisation defect between persistent and in-memory data layers"). When unsure, leave it out.
+- **Counts are legitimate.** Tickets closed, stories delivered and defects fixed are real measures of scope. Keep them, and ask what changed because of them.
+- **A metric is preferred, not mandatory.** Never pressure the user to produce or estimate a number. A bullet without a number is fine when it states a concrete outcome.
 
-The user might give you a paragraph which might conflate multiple tasks that they did. De-tangle them and provide a clean breakdown with each individual tasks listed. Present the breakdown to the user and ask them to provide their confirmation. Do not move forward until the user says so.
+## Workflow
 
-### 2. Build the resume bullet points
+Copy this checklist into your reply and tick it off. Don't move past a step until it's done.
 
-- Every bullet point must be constructed using the STAR method (Situation, Task, Action, Result).
-- The bullet must lead with a strong action verb, followed by the specific technology utilized, the scale of the system engineered, and a strictly quantified metric. Key metrics include throughput (Requests Per Second/QPS), latency reduction (in milliseconds or percentiles like p95/p99), cloud cost savings, uptime reliability (e.g., achieving 99.99% availability), and incident diagnosis time (MTTR).
-- The bullet must be within 20 - 35 words. If the bullet point is longer than 35 words, it is an indication that it is conflating multiple tasks into one bullet point. Break it down into multiple bullet points and ask the user for confirmation.
-- Below is a table showcasing a weak, task-based formulation of a bullet point and the corresponding optimized, impact-driven formulation using STAR method:
-  | Weak, Task-Based Formulation | Optimized, Impact-Driven Formulation |
-  | ---------------------------- | ------------------------------------ |
-  | Responsible for backend API performance and database queries. | Engineered scalable REST APIs using Node.js and PostgreSQL, optimizing query execution to reduce p95 latency by 42% (410ms to 238ms) across 12M daily requests. |
-  | Worked on migrating the application to microservices for the client. | Led the architectural migration of a monolithic payment service to 18 distinct microservices deployed on AWS EKS, improving system reliability from 99.2% to 99.95%. |
-  | Reduced AWS costs for the company by managing servers. | Re-architected batch processing jobs to utilize AWS Spot Instances and right-sized EC2 instances, reducing monthly cloud infrastructure expenditure by 31% ($38K/month). |
-  | Automated the testing and deployment process. | Implemented an idempotent retry and dead-letter pipeline, reducing failed payment writes by 88% and recovering $2.1M in stuck transactions. |
+```
+- [ ] 1. Split: list each distinct piece of work; the user confirms the split
+- [ ] 2. Interview: fill situation, task, actions, outcome, metrics and evidence for each
+- [ ] 3. Classify each against existing records: new, update or similar
+- [ ] 4. Draft bullets (references/bullet-rules.md)
+- [ ] 5. Check every bullet (list below); fix and re-check
+- [ ] 6. The user approves the record and the bullet text
+- [ ] 7. Save: NOTES.md entry, YAML, validate until 0 errors, render
+```
 
-### 3. Save to the experience database
+### 1. Split
 
-When each resume bullet point has been created, you should store them in the experience database present at `career/EXPERIENCE_DB.md` (or the folder chosen above) and record a changelog for history and audit purposes. If the file does not exist, create it.
-It is possible that the bullet points you have just created might be updates on what already exists in the experience database. In such a case, update the existing bullet points in the database.
-Another situation might be that the bullet points you just created are semantically similar to what already exists in the database. In such a situation, store the new bullet point as a new item in the database and mark it as being similar by mentioning the similar bullet points' item ID in the "Similar To" column of the new bullet point. Mention the new bullet point's item ID in the "Similar To" column of the already existing similar bullet points.
-For a new bullet point, generate itemID using the `genID.py` Python script in this skill's folder.
+Read the user's description and list each distinct piece of work. **More than one distinct action with its own result means more than one accomplishment.** Length is only a hint: a long bullet often mixes two pieces of work, but a short one can too. See the split example in [references/examples.md](references/examples.md).
 
-# How to handle incomplete bullet points
+- **Several pieces:** show the list and wait for the user to confirm or correct it before interviewing.
+- **One obvious piece:** say how you read it, and ask the first interview questions in the same message.
+- **Clearly an update** ("I got the metric for…", "after the release…"): find the matching record first (step 3), then interview only for the new information.
 
-It might happen that the user might not a particular information about a bullet point. For example, the user mentions that they optimized the SQL queries to use indexes but they do not have a metric of how much improvement this generated. In such a situation, advise them on how to obtain such metrics. Provide them with information about standard methods of obtaining metrics in the situation particular to the bullet point in question. The same applies to situation, task, and action part of the bullet point.
-If the user is not able to provide information even after this, accept it as a gap, notify them and mark it as incomplete in the database in "Incomplete" column. Refer to EXPERIENCE_DB_FORMAT.md for the format.
+### 2. Interview
 
-# How to break down a task into multiple bullet points
+For each accomplishment, ask only for what's missing, a few questions at a time:
 
-Here is an example:
+- **Where:** which employer and role? For client work, which client engagement in `employment.yaml`?
 
-- **Situation:** Operators were overwhelmed by logs from a subsystem flooding an existing tabular dashboard, reducing visibility into critical events.
-- **Task:** Design and integrate a new dashboard to isolate critical logs and improve operator visibility.
-- **Action:** Designed and integrated a new tabular dashboard using Java for the frontend and C-based backend services over Oracle-backed infrastructure; optimized insert-heavy write paths with batching and retries to sustain upto 300k log entries every 15 minutes.
-- **Result:** Redirected over 30% of log traffic to the new dashboard, improving operator visibility into critical events and reducing dashboard overload.
-- **Malformed bullet point:** Redirected critical subsystem logs using Java-based dashboarding and optimized C/Oracle-backed ingestion, routing 30% of prior log volume to a dedicated tabular dashboard and improving operator visibility across high-volume telemetry.
+- **Situation:** what was the problem or need, and why did it matter?
+- **Task:** what were you responsible for?
+- **Actions:** what did you personally do? Which technologies, and why those?
+- **Outcome:** what changed afterwards? For whom?
+- **Measure:** by how much? What was it before? How do you know (dashboard, report, ticket history, release notes)?
+- **Scale:** how big was the system or problem (traffic, data volume, users, modules)? Scale is not a result: "handles 300k entries every 15 minutes" describes the load, not an improvement.
+- **Evidence:** what would show this (PR, design doc, dashboard, recognition)? Describe it; never record internal links.
+- **Period:** roughly when (month and year)?
+- **Depth, for interviews and SDE-2 roles, only when relevant:** design decisions and the alternatives you rejected; reliability or scaling choices; incidents you owned; mentoring; obstacles, trade-offs, what failed, lessons.
 
-Here, the action is two-fold: 1) designed and integrated a new dashboard, and 2) optimized the ingestion pipeline. This should be broken down into two bullet points. The Malformed bullet point combines both into one, leading to a long and unclear bullet point.
-Another problem here is that the "optimization of ingestion pipeline" has incomplete data. The user should provide a metric of how optimized the pipeline became after his action. The "sustain upto 300k log entries every 15 minutes" should be a part of Task, not Result.
+**When the user has no number,** help them find one: monitoring or APM dashboards, logs, ticket or defect history, release notes, CI reports, a quick before-and-after benchmark, user or request counts, or time saved per run multiplied by runs. An honest estimate is acceptable if the user makes it and says how; record it with `confidence: estimated`. Figures read from a system or document (dashboard, report, ticket history, config) are `measured`, even when the user did the counting; figures the user knows from memory are `reported`. Keep approximate figures as the user gives them (`value: "17+"`); ask for the exact number only if they have it. If the user still can't supply something, **stop and ask whether to accept it as a gap.** Only with their agreement, record it under `gaps` and save the record as `incomplete`.
 
-- **Improved bullet point 1:**
-  - **Situation:** Operators were overwhelmed by logs from a subsystem flooding an existing tabular dashboard, reducing visibility into critical events.
-  - **Task:** Design and integrate a new dashboard to isolate critical logs and improve operator visibility.
-  - **Action:** Designed and integrated a new tabular dashboard using Java for the frontend and C-based backend services over Oracle-backed infrastructure.
-  - **Result:** Redirected over 30% of log traffic to the new dashboard, improving operator visibility into critical events and reducing dashboard overload.
-  - **Resume Bullet Point (in STAR format):** Designed and integrated a new tabular dashboard using Java, C and Oracle, routing 30% of prior high-volume telemetry and improving operator visibility.
+### 3. Classify
 
-- **Improved bullet point 2:**
-  - **Situation:** The log ingestion pipeline was not optimized to handle high-volume telemetry, leading to performance issues.
-  - **Task:** Optimize the ingestion pipeline to handle high-volume telemetry.
-  - **Action:** Optimized C and Oracle based ingestion pipeline with batching and retries to sustain up to 300k log entries every 15 minutes.
-  - **Result:** Improved performance by 50%.
-  - **Resume Bullet Point (in STAR format):** Optimized a high-volume (up to 300k log entries every 15 minutes) C and Oracle based log ingestion pipeline with batching and retries, improving performance by 50%.
+Compare with the existing records in `career/data/accomplishments/` (titles, periods, technologies):
 
-# Judging the effectiveness of a bullet point
+- **Update:** the same work, now with new information (a metric arrived, a result is known). Edit that record and keep its ID. A `confirmed` record stays confirmed if the new facts are user-confirmed. Leave its existing confirmed bullets alone, and add any new or revised bullet as a `draft` beside them until the user approves the text.
+- **Similar:** different work with an overlapping theme or technology. Save it as a new record and add each ID to the other's `similar_to`.
+- **New:** anything else.
 
-An effective bullet point conveys a clear impact that the user had on the organisation AND has technical keywords inside for effective ATS filtering. Here is an example of an effective and non-effective bullet point:
+When unsure, show the candidate match and ask.
 
-### Non-effective:
+### 4. Draft bullets
 
-- "Delivered 17+ user stories and resolved 11+ defects across C/C++, Java, SQL, and Bash in two mission-critical features and the existing codebase of an enterprise Advanced EMS/SCADA product."
-- It is non-effective because it does not mention the impact. "17+ user stories" and "11+ defects" are real metrics but they do not convey that.
-- It is also non-effective because even though the technical keywords "C/C++, Java, SQL, and Bash" are mentioned, it is not mentioned how they contributed to the impact.
+Follow [references/bullet-rules.md](references/bullet-rules.md). In short: lead with an action verb, then state the outcome, the measure and the method, naming the exact technologies, in at most two lines. Offer one or two variants if the work fits more than one track (for example backend and full-stack).
 
-### Effective:
+### 5. Check every bullet
 
-- "Optimized a high-volume (up to 300k log entries every 15 minutes) C and Oracle based log ingestion pipeline with batching and retries, improving performance by 50%."
-- It is effective because it mentions the impact of the action taken by the user. The metric "improving performance by 50%" conveys the impact.
-- It is also effective because it mentions the technical keywords "C and Oracle" and how they contributed to the impact.
+- [ ] Every fact and number in the bullet is in the record, and every metric it uses is user-confirmed
+- [ ] It describes one piece of work
+- [ ] It says what changed (an outcome), not only what was done
+- [ ] A count is paired with an outcome or context where one exists
+- [ ] It names the technologies used, with exact names
+- [ ] No client name, internal system name or other confidential detail
+- [ ] 20–35 words is the usual range; outside it, check it isn't two bullets or padded
+
+If any check fails, return to step 2 (missing information) or step 1 (two pieces of work in one).
+
+### 6. User approval
+
+Show the record summary and the bullet text. The record becomes `confirmed` (or `incomplete` with agreed gaps) only when the user agrees it's accurate. A bullet becomes `confirmed` only when the user approves its exact text. Metrics get `user_confirmed: true` only for numbers the user has stated or confirmed.
+
+### 7. Save
+
+1. Get a timestamp: `PY SCRIPTS/timestamp.py`.
+2. Append one entry to `career/NOTES.md` with the user's information, in sanitized form, and the record changes. Use the format in schema.md section 7.
+3. For a new record, run `PY SCRIPTS/new_id.py`, copy `../maintain-career-record/templates/accomplishment.yaml` to `career/data/accomplishments/<id>.yaml`, and fill it in. For an update, edit the existing file and set `updated`. Either way, add the timestamp to `sources`.
+4. Link the technologies as evidence in `career/data/skills.yaml`, adding skills that are missing (leave `depth` unset unless the user has said it). If you set `similar_to`, add the link to both records.
+5. `PY SCRIPTS/validate.py career`. Fix every error and re-run until it reports 0 errors. If an error says a bullet uses a number that isn't in the record, either add the number with the user or remove it from the bullet; never just make the check pass.
+6. `PY SCRIPTS/render.py career`.
+7. Tell the user what was saved, its status, any gaps, and any follow-up worth setting (for example "the error rate a month after launch"). Record that follow-up in `follow_up`.
+
+## Troubleshooting
+
+- **The role or employer isn't in employment.yaml:** add it first, following maintain-career-record, then save the accomplishment.
+- **"No Python at …":** a stale virtual environment is active. Run `PY` by its full path, or ask the user to deactivate it.
+- **The user wants to skip questions and "just write the bullet":** draft it from what's known, mark the record `draft` or `incomplete` with gaps, and say clearly which parts are missing. Don't fill them in.
+- **Sibling folders are missing:** the suite isn't fully installed; see setup-career-skills.

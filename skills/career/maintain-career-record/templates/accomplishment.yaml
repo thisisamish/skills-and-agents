@@ -1,0 +1,47 @@
+# One accomplishment. Copy to career/data/accomplishments/<id>.yaml,
+# where <id> comes from new_id.py. See references/schema.md for every field.
+schema_version: 1
+id: ""
+status: draft                 # draft | incomplete | confirmed
+role_id: ""                   # from employment.yaml
+engagement_id: null           # optional client engagement under the role
+period: {start: "", end: ""}  # YYYY-MM or YYYY; end may be "present"; empty if unknown
+title: ""
+category: ""                  # see references/schema.md
+situation: ""
+task: ""                      # the user's own responsibility
+actions: []                   # what the user personally did
+team_context: ""              # what the team did and its size
+scale: ""                     # size of the system or problem
+technologies: []
+outcome: ""
+metrics: []
+# - name: p95 latency
+#   before: "410"
+#   after: "238"
+#   value: ""                 # use instead of before/after for single values
+#   unit: ms
+#   period: "2025-Q1"
+#   source: "monitoring dashboard"
+#   confidence: measured      # measured | reported | estimated | relative_only
+#   user_confirmed: true
+evidence: []                  # {type: pr|doc|dashboard|ticket|email|recognition|other, ref: "sanitized description"}
+sde2_signals:
+  design_ownership: ""
+  alternatives_considered: ""
+  reliability_or_scaling: ""
+  mentoring: ""
+  incident_ownership: ""
+interview:
+  obstacles: ""
+  tradeoffs: ""
+  what_failed: ""
+  lessons: ""
+  competencies: []
+bullets: []                   # {id, text, tracks: [], status: draft|confirmed}
+similar_to: []                # ids of similar accomplishments (kept symmetric)
+gaps: []                      # missing information the user has accepted
+follow_up: null               # {due: "YYYY-MM", ask: "..."}
+sources: []                   # NOTES.md entry timestamps, e.g. "2025-03-14T10:02:00+05:30"
+created: ""                   # YYYY-MM-DD
+updated: ""                   # YYYY-MM-DD

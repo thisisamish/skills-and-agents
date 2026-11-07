@@ -1,0 +1,10 @@
+# Awards, ratings, praise and other signals of trust.
+schema_version: 1
+recognition: []
+# - id: rec-1
+#   title: ""
+#   by: ""                    # role of the person or body, e.g. "engineering manager"
+#   date: "2025-03"
+#   description: ""
+#   related: []               # accomplishment ids
+#   sources: []
