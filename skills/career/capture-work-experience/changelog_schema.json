@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/thisisamish/skills-agents-and-such/main/.github/skills/save-experience-in-star-format/changelog_schema.json",
+  "$id": "https://raw.githubusercontent.com/thisisamish/skills-and-agents/main/skills/career/capture-work-experience/changelog_schema.json",
   "title": "Changelog",
   "description": "Changelog of EXPERIENCE_DB.md",
   "type": "array",

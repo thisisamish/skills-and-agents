@@ -1,5 +1,5 @@
 ---
-name: career-master-document
+name: maintain-career-record
 description: Maintain an evidence-backed career record and turn it into resume bullets, resumes, performance-review material, promotion evidence, interview stories, and career-development insights. Use when the user discusses career history, engineering work, achievements, skills, goals, resumes, appraisals, promotions, or interviews.
 ---
 

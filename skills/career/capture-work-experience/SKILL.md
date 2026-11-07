@@ -1,5 +1,5 @@
 ---
-name: save-experience-in-star-format
+name: capture-work-experience
 description: "Maintain a database of a software engineer's work experience in STAR format (Situation, Task, Action, Result). Use it when user asks to save work experience in bullet point(s)."
 ---
 
