@@ -68,7 +68,15 @@ When the user asks for a review, or at least once a quarter:
 3. For each incomplete record, offer ways to fill its gaps. Examples: where a metric can be found (dashboards, release notes, ticket history), or a before-and-after comparison the user could run.
 4. Point out skills without evidence and ask whether there is work that shows them.
 5. If Open items shows uncaptured work-log entries (`career/log.md`), offer a capture-work-experience session to process them.
-6. Summarise the strongest confirmed accomplishments, the evidence gaps, and any recent work that hasn't been captured yet. Offer a capture-work-experience session for the uncaptured work.
+6. Ask about work that's on no board, which reviews otherwise miss. For example:
+   - Who did you help since the last review, and with what?
+   - What did you start that nobody asked for?
+   - Which questions do people keep bringing to you?
+   - Did you write any docs or guides, or do any onboarding, interviewing or review work?
+   - Did anyone tell you that you did something well?
+
+   Capture the answers with capture-work-experience. Recurring help becomes one theme, with `origin` set to `requested_by_others` or `self_initiated`.
+7. Summarise the strongest confirmed accomplishments, the evidence gaps, and any recent work that hasn't been captured yet. Offer a capture-work-experience session for the uncaptured work.
 
 ## Migrating an old CMD.md
 
