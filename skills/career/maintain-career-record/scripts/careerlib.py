@@ -35,6 +35,8 @@ DATA_FILES = [
 
 ACCOMPLISHMENT_DIR = "accomplishments"
 
+LOG_PENDING = re.compile(r"^- \[ \] \S")  # an uncaptured work-log entry at column 0
+
 NOTES_HEADING = re.compile(r"^## (\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?(?:Z|[+-]\d{2}:\d{2}))\s*$")
 
 
@@ -109,7 +111,20 @@ def load_record(career_dir):
                 errors.append(err)
                 continue
             record["accomplishments"].append((path, data or {}))
+    record["log_pending"] = pending_log_entries(career_dir)
     return record, errors
+
+
+def pending_log_entries(career_dir):
+    """Return the uncaptured entries (unticked '- [ ]' lines) in log.md.
+
+    Indented example lines don't count. A missing log.md means none.
+    """
+    path = Path(career_dir) / "log.md"
+    if not path.exists():
+        return []
+    return [line.rstrip() for line in path.read_text(encoding="utf-8").splitlines()
+            if LOG_PENDING.match(line)]
 
 
 def notes_timestamps(career_dir):

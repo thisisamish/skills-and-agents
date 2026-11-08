@@ -33,6 +33,7 @@ def init(repo_root):
             target = career / "data" / source.relative_to(TEMPLATES / "data")
             place(target, lambda t, s=source: shutil.copyfile(s, t))
     place(career / "NOTES.md", lambda t: shutil.copyfile(TEMPLATES / "NOTES.md", t))
+    place(career / "log.md", lambda t: shutil.copyfile(TEMPLATES / "log.md", t))
     place(career / ".gitignore", lambda t: t.write_text(GITIGNORE, encoding="utf-8"))
     return career, created, kept
 

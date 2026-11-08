@@ -36,7 +36,7 @@ The career skills are one suite and must be installed together. They write to th
 
 - [setup-career-skills](skills/career/setup-career-skills/SKILL.md) — run first: checks the suite is installed, creates the record's Python environment with uv (`career/.venv`, PyYAML only) and the `career/` record.
 - [maintain-career-record](skills/career/maintain-career-record/SKILL.md) — keep the evidence-backed career record (profile, employment, skills, education, projects, goals) as YAML with an audit log and a generated `CAREER.md`; migrate an old `CMD.md`.
-- [capture-work-experience](skills/career/capture-work-experience/SKILL.md) — capture pieces of work as STAR accomplishments and resume bullets that use only confirmed facts.
+- [capture-work-experience](skills/career/capture-work-experience/SKILL.md) — capture pieces of work as STAR accomplishments and resume bullets that use only confirmed facts, including work that's on no board (help given, self-initiated work); backfill lots of past work from an inventory; log quick notes in `career/log.md` for later.
 
 Resume building, job-description tailoring and interview preparation are planned but not built yet.
 

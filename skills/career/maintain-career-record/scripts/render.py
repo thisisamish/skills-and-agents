@@ -97,6 +97,10 @@ def open_items(record, accomplishments, today):
             for gap in items(entry.get("gaps")):
                 lines.append(f"- Gap ({key}: {text(entry.get(field))}): {gap}")
 
+    pending = record.get("log_pending") or []
+    if pending:
+        lines.append(f"- Work-log entries not yet captured ({len(pending)}): see log.md")
+
     # Structural gaps.
     skill_names = {text(s.get("name")).lower() for s in record.get("skills", {}).get("skills") or []}
     used = sorted({text(t) for a in accomplishments for t in as_list(a.get("technologies"))
@@ -130,7 +134,8 @@ def open_items(record, accomplishments, today):
 def render_accomplishment(acc):
     lines = [f"\n##### {text(acc.get('title')) or acc.get('id')}\n",
              f"`{acc.get('id')}` · {text(acc.get('status'))} · {text(acc.get('category'))} · "
-             f"{fmt_period((acc.get('period') or {}).get('start'), (acc.get('period') or {}).get('end'))}\n"]
+             + (f"{text(acc.get('origin')).replace('_', ' ')} · " if text(acc.get('origin')) else "")
+             + f"{fmt_period((acc.get('period') or {}).get('start'), (acc.get('period') or {}).get('end'))}\n"]
     for label, key in (("Situation", "situation"), ("Task", "task")):
         if text(acc.get(key)):
             lines.append(f"- **{label}:** {text(acc.get(key))}")

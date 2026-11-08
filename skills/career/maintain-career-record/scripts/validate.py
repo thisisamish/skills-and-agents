@@ -36,6 +36,7 @@ CATEGORIES = {
     "testing", "automation", "refactoring", "developer_productivity", "documentation",
     "architecture", "production_support", "leadership", "collaboration", "learning", "other",
 }
+ORIGINS = {"assigned", "self_initiated", "requested_by_others"}
 CONFIDENCE = {"measured", "reported", "estimated", "relative_only"}
 EVIDENCE_TYPES = {"pr", "doc", "dashboard", "ticket", "email", "recognition", "other"}
 ROLE_TYPES = {"full_time", "internship", "contract", "part_time"}
@@ -133,7 +134,7 @@ class Validator:
             self.report.error(self.career_dir / "NOTES.md", "missing. Run init.py to restore it.")
 
         for name, data in record.items():
-            if name == "accomplishments":
+            if name in ("accomplishments", "log_pending"):  # not data files
                 continue
             where = f"data/{name}.yaml"
             if not isinstance(data, dict):
@@ -254,6 +255,10 @@ class Validator:
             r.error(where, f"category '{category}' is not one of {sorted(CATEGORIES)}")
         elif not category and final:
             r.error(where, "category is empty")
+
+        origin = text(data.get("origin"))
+        if origin and origin not in ORIGINS:
+            r.error(where, f"origin '{origin}' is not one of {sorted(ORIGINS)} (or leave it empty)")
 
         missing = [f for f in ("title", "situation", "task", "outcome") if not text(data.get(f))]
         actions = [a for a in as_list(data.get("actions")) if text(a)]

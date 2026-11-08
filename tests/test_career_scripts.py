@@ -121,6 +121,7 @@ class InitTests(CareerTestCase):
         for name in careerlib.DATA_FILES:
             self.assertTrue((self.career / "data" / name).exists(), name)
         self.assertTrue((self.career / ".gitignore").exists())
+        self.assertTrue((self.career / "log.md").exists())
         _, created, kept = init.init(self.root)
         self.assertEqual(created, [])
         self.assertIn(self.career / "NOTES.md", kept)
@@ -262,6 +263,13 @@ class UnknownValueTests(CareerTestCase):
             {"id": "rec-1", "title": "Award", "date": "March 2025"}]})
         self.assertError("date 'March 2025'")
 
+    def test_origin_is_optional_and_checked(self):
+        for origin in ("", "assigned", "self_initiated", "requested_by_others"):
+            self.write_acc(self.acc(origin=origin))
+            self.assertEqual(self.errors(), [], origin)
+        self.write_acc(self.acc(origin="volunteered"))
+        self.assertError("origin 'volunteered'")
+
 
 class NumberTests(unittest.TestCase):
     def test_normalisation(self):
@@ -283,6 +291,26 @@ class RenderTests(CareerTestCase):
         self.assertIn("Draft bullet *(draft)*", output)
         self.assertIn("follow-up due 2025-01", output)
         self.assertIn("p95 latency: 410 → 238 ms (measured", output)
+
+    def test_log_pending_entries(self):
+        # The blank template's indented examples don't count.
+        self.assertEqual(careerlib.pending_log_entries(self.career), [])
+        log = self.career / "log.md"
+        log.write_text(log.read_text(encoding="utf-8")
+                       + "- [ ] 2025-04-02 · asked by new joiner · fixed their build · unblocked\n"
+                       + "- [x] 2025-04-03 · self · wrote a guide · used twice → " + ACC_ID + "\n",
+                       encoding="utf-8")
+        self.assertEqual(len(careerlib.pending_log_entries(self.career)), 1)
+        self.assertEqual(self.errors(), [])
+        output = render.render(careerlib.load_record(self.career)[0], "2025-06-01")
+        self.assertIn("Work-log entries not yet captured (1)", output)
+        log.unlink()
+        self.assertEqual(careerlib.pending_log_entries(self.career), [])
+
+    def test_render_shows_origin(self):
+        self.write_acc(self.acc(origin="self_initiated"))
+        output = render.render(careerlib.load_record(self.career)[0], "2025-06-01")
+        self.assertIn("performance · self initiated · ", output)
 
     def test_open_items_show_structural_gaps(self):
         output = render.render(careerlib.load_record(self.career)[0], "2025-06-01")

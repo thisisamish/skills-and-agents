@@ -3,7 +3,7 @@ name: maintain-career-record
 description: Maintains a software engineer's evidence-backed career record (profile, employers and roles, skills, education, projects, certifications, recognition, learning, goals) as structured YAML in the user's repo, with an append-only audit log and a generated CAREER.md view. Use when the user wants to add, correct or review career details, update their profile, education, skills or projects, review evidence gaps, or migrate an old CMD.md. For saving a specific piece of work as STAR resume bullets, use capture-work-experience instead; for first-time setup, use setup-career-skills.
 compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Needs Python 3.9+ with PyYAML in career/.venv, created by setup-career-skills.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
   suite: career
 ---
 
@@ -30,7 +30,8 @@ Before anything else, check that `career/data/` exists and that `PY -c "import y
 - **Exact values.** Scores, titles, employer names and dates exactly as on official documents. Never round a CGPA or percentage, and never expand an abbreviation the user didn't expand.
 - **Unknown stays unknown.** If the user gives only a year, record the year; if they don't know, leave it empty and add a gap. Never fill in a plausible month, title or name.
 - **Neutral questions.** Ask "what changed, by how much, how do you know, who else was involved?" rather than inviting adjectives. Don't push the user to inflate or to estimate numbers they don't have.
-- **Goals are not evidence.** Keep aspirations in `goals.yaml` only.
+- **Complete, not curated.** The record holds the full facts, including ones the user may not want on a resume (older technologies, the system's age, manual processes). Presentation is decided when bullets and resumes are made, for the role being targeted. Never drop or soften a fact in the record to make it look better.
+- **Goals are not evidence.** Keep aspirations in `goals.yaml` only. Specific target roles there (for example "backend engineer at product companies") tell the other skills which track to draft bullets for first.
 - **Edit YAML, never CAREER.md.** It is regenerated.
 
 The field-by-field format is in [references/schema.md](references/schema.md). Blank files are in `templates/`.
@@ -66,7 +67,16 @@ When the user asks for a review, or at least once a quarter:
 2. For each follow-up that is due, ask the user for the result (e.g. "the error rate after launch").
 3. For each incomplete record, offer ways to fill its gaps. Examples: where a metric can be found (dashboards, release notes, ticket history), or a before-and-after comparison the user could run.
 4. Point out skills without evidence and ask whether there is work that shows them.
-5. Summarise the strongest confirmed accomplishments, the evidence gaps, and any recent work that hasn't been captured yet. Offer a capture-work-experience session for the uncaptured work.
+5. If Open items shows uncaptured work-log entries (`career/log.md`), offer a capture-work-experience session to process them.
+6. Ask about work that's on no board, which reviews otherwise miss. For example:
+   - Who did you help since the last review, and with what?
+   - What did you start that nobody asked for?
+   - Which questions do people keep bringing to you?
+   - Did you write any docs or guides, or do any onboarding, interviewing or review work?
+   - Did anyone tell you that you did something well?
+
+   Capture the answers with capture-work-experience. Recurring help becomes one theme, with `origin` set to `requested_by_others` or `self_initiated`.
+7. Summarise the strongest confirmed accomplishments, the evidence gaps, and any recent work that hasn't been captured yet. Offer a capture-work-experience session for the uncaptured work.
 
 ## Migrating an old CMD.md
 

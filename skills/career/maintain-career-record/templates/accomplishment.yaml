@@ -8,6 +8,7 @@ engagement_id: null           # optional client engagement under the role
 period: {start: "", end: ""}  # YYYY-MM or YYYY; end may be "present"; empty if unknown
 title: ""
 category: ""                  # see references/schema.md
+origin: ""                    # assigned | self_initiated | requested_by_others (optional): who started the work
 situation: ""
 task: ""                      # the user's own responsibility
 actions: []                   # what the user personally did

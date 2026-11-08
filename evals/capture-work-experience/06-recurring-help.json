@@ -1,0 +1,18 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "Add this to my record: I keep helping the new people on my team. They ask me about the build, the debugger setup, how the modules fit together, and when they get stuck on their stories I sit with them. None of this is on the board. Probably 4 or 5 new joiners this year.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Treats it as one recurring theme accomplishment, not one record per question or person",
+    "Plans to set origin to requested_by_others",
+    "Asks for two or three specific instances (problem, what the user did, what happened)",
+    "Keeps the user's approximate count as given (e.g. '4-5' or '4+'), recorded as reported, without asking them to inflate or estimate further",
+    "Asks for the period and what changed for the new joiners, without inventing an outcome"
+  ]
+}

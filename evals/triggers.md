@@ -10,6 +10,10 @@ Ask the agent each query with all career skills installed, and record which skil
 - Here's what I worked on last quarter: … (a pasted work description)
 - I got the metric for the caching work: p95 went from 900 ms to 300 ms.
 - Help me write an impact bullet for the migration I led.
+- I spent this week helping two new joiners get their environments working; add that to my record.
+- Log this for later: I helped the testing team reproduce a crash today.
+- Process my work log.
+- I want to list everything I've done at this job and build my record from scratch.
 
 ## maintain-career-record
 
