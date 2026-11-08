@@ -27,6 +27,7 @@ If `career/data/` is missing or `PY -c "import yaml"` fails, run setup-career-sk
 - **Confidentiality.** Never record source code, credentials, internal URLs or system names, customer names, screenshots or proprietary details. Generalise instead ("a synchronisation defect between persistent and in-memory data layers"). When unsure, leave it out.
 - **Counts are legitimate.** Tickets closed, stories delivered and defects fixed are real measures of scope. Keep them, and ask what changed because of them.
 - **A metric is preferred, not mandatory.** Never pressure the user to produce or estimate a number. A bullet without a number is fine when it states a concrete outcome.
+- **Record facts in full; present them later.** Record exact technologies and system context even when they seem unflattering: an older UI framework, a decades-old codebase, manual testing. What to emphasise or leave out is decided per bullet and per resume, never by leaving facts out of the record. Interviewers ask about the parts a resume skips.
 
 ## Workflow
 
@@ -34,7 +35,7 @@ Copy this checklist into your reply and tick it off. Don't move past a step unti
 
 ```
 - [ ] 1. Split: list each distinct piece of work; the user confirms the split
-- [ ] 2. Interview: fill situation, task, actions, outcome, metrics and evidence for each
+- [ ] 2. Interview: fill situation, task, actions, system context, outcome, metrics and evidence for each
 - [ ] 3. Classify each against existing records: new, update or similar
 - [ ] 4. Draft bullets (references/bullet-rules.md)
 - [ ] 5. Check every bullet (list below); fix and re-check
@@ -48,6 +49,7 @@ Read the user's description and list each distinct piece of work. **More than on
 
 - **Several pieces:** show the list and wait for the user to confirm or correct it before interviewing.
 - **One obvious piece:** say how you read it, and ask the first interview questions in the same message.
+- **Recurring work is one theme, not many records.** Repeated work of the same kind (answering new joiners' questions, unblocking teammates, refining stories with a lead, reviewing code) becomes one accomplishment covering a period. Its `actions` describe the pattern plus two or three specific instances: what the problem was, what the user did, what happened. Its metrics are counts over the period (`reported` when from memory), and its `origin` is usually `requested_by_others`. Ask for the specific instances: they make the theme credible in an interview. A one-off with its own result (a guide written, a tool built) is a separate accomplishment, linked with `similar_to` if related.
 - **Clearly an update** ("I got the metric for…", "after the release…"): find the matching record first (step 3), then interview only for the new information.
 - **From the work log** (`career/log.md`, schema.md section 8): when the user asks to process the log, or when it has uncaptured entries and the user is capturing anyway, read the unticked entries, group the ones that belong to the same piece of work or theme, and treat each group as one piece to split and interview as usual. A log line is a prompt, not a confirmed fact.
 
@@ -56,16 +58,18 @@ Read the user's description and list each distinct piece of work. **More than on
 For each accomplishment, ask only for what's missing, a few questions at a time:
 
 - **Where:** which employer and role? For client work, which client engagement in `employment.yaml`?
-
+- **Origin:** who started it: assigned (board, tracker, manager), the user on their own initiative, or someone asking for their help? Sets `origin`. Self-initiated work and help given are rarely on a board, so ask about them explicitly when the user is listing work.
 - **Situation:** what was the problem or need, and why did it matter?
 - **Task:** what were you responsible for?
 - **Actions:** what did you personally do? Which technologies, and why those?
 - **Outcome:** what changed afterwards? For whom?
 - **Measure:** by how much? What was it before? How do you know (dashboard, report, ticket history, release notes)?
+- **System context:** what kind of system is it, and where does this work sit in it? Its components and how they communicate (services, nodes, messaging, shared databases), concurrency, data stores, and the size and age of the codebase. Record it in `scale` and `situation`. These facts let a bullet show the complexity of the work later, whatever the technology's age.
 - **Scale:** how big was the system or problem (traffic, data volume, users, modules)? Scale is not a result: "handles 300k entries every 15 minutes" describes the load, not an improvement.
 - **Evidence:** what would show this (PR, design doc, dashboard, recognition)? Describe it; never record internal links.
 - **Period:** roughly when (month and year)?
-- **Depth, for interviews and SDE-2 roles, only when relevant:** design decisions and the alternatives you rejected; reliability or scaling choices; incidents you owned; mentoring; obstacles, trade-offs, what failed, lessons.
+- **Design, every time:** did you make any design decisions, and which alternatives did you reject? The answer is often yes even for "small" work, and it's what SDE-2 screens look for. If there were none, leave `design_ownership` empty rather than stretching.
+- **Depth, for interviews and SDE-2 roles, only when relevant:** reliability or scaling choices; incidents you owned; mentoring; obstacles, trade-offs, what failed, lessons.
 
 **When the user has no number,** help them find one: monitoring or APM dashboards, logs, ticket or defect history, release notes, CI reports, a quick before-and-after benchmark, user or request counts, or time saved per run multiplied by runs. An honest estimate is acceptable if the user makes it and says how; record it with `confidence: estimated`. Figures read from a system or document (dashboard, report, ticket history, config) are `measured`, even when the user did the counting; figures the user knows from memory are `reported`. Keep approximate figures as the user gives them (`value: "17+"`); ask for the exact number only if they have it. If the user still can't supply something, **stop and ask whether to accept it as a gap.** Only with their agreement, record it under `gaps` and save the record as `incomplete`.
 

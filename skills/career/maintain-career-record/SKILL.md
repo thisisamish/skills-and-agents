@@ -30,7 +30,8 @@ Before anything else, check that `career/data/` exists and that `PY -c "import y
 - **Exact values.** Scores, titles, employer names and dates exactly as on official documents. Never round a CGPA or percentage, and never expand an abbreviation the user didn't expand.
 - **Unknown stays unknown.** If the user gives only a year, record the year; if they don't know, leave it empty and add a gap. Never fill in a plausible month, title or name.
 - **Neutral questions.** Ask "what changed, by how much, how do you know, who else was involved?" rather than inviting adjectives. Don't push the user to inflate or to estimate numbers they don't have.
-- **Goals are not evidence.** Keep aspirations in `goals.yaml` only.
+- **Complete, not curated.** The record holds the full facts, including ones the user may not want on a resume (older technologies, the system's age, manual processes). Presentation is decided when bullets and resumes are made, for the role being targeted. Never drop or soften a fact in the record to make it look better.
+- **Goals are not evidence.** Keep aspirations in `goals.yaml` only. Specific target roles there (for example "backend engineer at product companies") tell the other skills which track to draft bullets for first.
 - **Edit YAML, never CAREER.md.** It is regenerated.
 
 The field-by-field format is in [references/schema.md](references/schema.md). Blank files are in `templates/`.

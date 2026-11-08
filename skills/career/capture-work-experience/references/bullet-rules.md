@@ -52,6 +52,17 @@ Product companies look for ownership, design judgement and scale. When the recor
 
 Only claim SDE-2-style signals (design ownership, mentoring, incident ownership) when the record shows them.
 
+## Presenting work for a target role
+
+The record holds the full facts; bullets choose what to emphasise. A bullet is drafted for a track (`tracks`: backend, frontend, full_stack, platform, data…). When `goals.yaml` names target roles, draft that track's variant first.
+
+- **Describe the system by its scale and complexity, not its age.** "A globally deployed, multi-node C and Java platform with custom messaging" and "a 35-year-old legacy codebase" can describe the same system. The first says what the work demanded, so use it when both are true.
+- **Leaving out is a choice; misrepresenting is not.** A bullet may skip a technology that doesn't help the target role, or describe it neutrally ("a Java desktop client"). It must never imply a technology, scale, role or result the record doesn't show. Everything on the page has to survive "tell me more about that".
+- **Broad claims need specific evidence.** "Distributed systems", "system design" or "high-performance" only where the record shows the user's own work in them (system context, `design_ownership`, metrics).
+- **Help given and self-initiated work** usually earn one bullet, or half of one, beside the technical bullets ("onboarded four engineers to…"). Their main use is interview stories.
+
+There is no published evidence on how screeners react to particular technology names; this guidance rests on accuracy and on what product-company postings ask for (ownership, design, scale).
+
 ## Quick examples (weak → stronger)
 
 All figures in these examples are made up and are only meant to show the shape.
