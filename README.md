@@ -57,6 +57,8 @@ This creates `.venv`. Run scripts and tests with its Python; don't install packa
 
 Evaluation scenarios and triggering queries for each skill are in [evals/](evals/).
 
+Every change goes through a branch and a pull request, and only the maintainer merges. The rules are in [AGENTS.md](AGENTS.md), and the reasons behind them are in [docs/MAINTAINING.md](docs/MAINTAINING.md).
+
 ## Agents
 
 None yet.

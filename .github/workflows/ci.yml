@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Oldest supported Python (AGENTS.md) and the version this repo develops on (.python-version).
+        python-version: ["3.9", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Run tests
+        run: uv run --no-sync python -m unittest discover tests
+
+      - name: Validate fixture record
+        run: uv run --no-sync python skills/career/maintain-career-record/scripts/validate.py evals/fixtures/sample-repo/career

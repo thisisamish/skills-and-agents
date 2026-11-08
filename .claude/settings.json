@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(gh pr merge *)",
+      "PowerShell(gh pr merge *)",
+      "Bash(gh pr review * --approve*)",
+      "PowerShell(gh pr review * --approve*)",
+      "Bash(gh api *pulls/*/merge*)",
+      "PowerShell(gh api *pulls/*/merge*)",
+      "Bash(git push * main)",
+      "PowerShell(git push * main)",
+      "Bash(git push * main *)",
+      "PowerShell(git push * main *)",
+      "Bash(git push *:main*)",
+      "PowerShell(git push *:main*)",
+      "Bash(git push *--force*)",
+      "PowerShell(git push *--force*)",
+      "Bash(git push * -f*)",
+      "PowerShell(git push * -f*)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "PowerShell(git push *)",
+      "Bash(gh pr create *)",
+      "PowerShell(gh pr create *)",
+      "Bash(gh pr ready *)",
+      "PowerShell(gh pr ready *)"
+    ]
+  }
+}
