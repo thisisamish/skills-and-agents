@@ -26,8 +26,6 @@ npx skills@latest add thisisamish/skills-and-agents -a <agent>
 
 When asked which skills to install, select all of the career skills. They are a suite and depend on each other.
 
-While the repo is private, your machine must be signed in to GitHub with access to it.
-
 ## Reference
 
 ### Career
