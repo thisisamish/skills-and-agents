@@ -1,6 +1,6 @@
 ---
 name: capture-work-experience
-description: Captures a software engineer's work as STAR (Situation, Task, Action, Result) accomplishments with evidence-backed resume bullets, and saves them into the career record kept by maintain-career-record. Splits descriptions that mix several pieces of work, interviews the user for missing details without inventing any, and checks every bullet before saving. Use when the user says "save this experience", asks for a resume bullet or STAR bullet, pastes a description of work they did, adds a piece of work to their career record, or gives a missing metric, detail or correction for an existing accomplishment. Profile, education, employers, roles and personal projects belong to maintain-career-record.
+description: Captures a software engineer's work as STAR (Situation, Task, Action, Result) accomplishments with evidence-backed resume bullets, and saves them into the career record kept by maintain-career-record. Splits descriptions that mix several pieces of work, interviews the user for missing details without inventing any, and checks every bullet before saving. Use when the user says "save this experience", asks for a resume bullet or STAR bullet, pastes a description of work they did, adds a piece of work to their career record, or gives a missing metric, detail or correction for an existing accomplishment. Also use it to backfill a lot of past work from an inventory, or to log or process quick notes in career/log.md, including help given to teammates and self-initiated work that's on no board. Profile, education, employers, roles and personal projects belong to maintain-career-record.
 compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Needs Python 3.9+ with PyYAML in career/.venv, created by setup-career-skills.
 metadata:
   version: 2.0.0
@@ -42,6 +42,8 @@ Copy this checklist into your reply and tick it off. Don't move past a step unti
 - [ ] 6. The user approves the record and the bullet text
 - [ ] 7. Save: NOTES.md entry, YAML, validate until 0 errors, render
 ```
+
+**Lots of past work at once?** If the user is starting a record, is far behind, or wants to rebuild it ("list everything I've done", "backfill my record"), follow [references/backfill.md](references/backfill.md). It builds an inventory first, then runs this workflow row by row.
 
 ### 1. Split
 
