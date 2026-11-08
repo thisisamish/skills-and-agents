@@ -25,7 +25,7 @@ Bengaluru · asha@example.com
 
 ##### Cut settlement report latency
 
-`3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012` · confirmed · performance · 2025-01 – 2025-03
+`3f9c2b1e-7d4a-4c1e-9b2f-5a6d7e8f9012` · confirmed · performance · assigned · 2025-01 – 2025-03
 
 - **Situation:** Settlement reports for the banking client's operations team took too long to use interactively.
 - **Task:** Make the report endpoint fast enough for interactive use without changing its output.

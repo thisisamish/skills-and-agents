@@ -262,6 +262,13 @@ class UnknownValueTests(CareerTestCase):
             {"id": "rec-1", "title": "Award", "date": "March 2025"}]})
         self.assertError("date 'March 2025'")
 
+    def test_origin_is_optional_and_checked(self):
+        for origin in ("", "assigned", "self_initiated", "requested_by_others"):
+            self.write_acc(self.acc(origin=origin))
+            self.assertEqual(self.errors(), [], origin)
+        self.write_acc(self.acc(origin="volunteered"))
+        self.assertError("origin 'volunteered'")
+
 
 class NumberTests(unittest.TestCase):
     def test_normalisation(self):
@@ -283,6 +290,11 @@ class RenderTests(CareerTestCase):
         self.assertIn("Draft bullet *(draft)*", output)
         self.assertIn("follow-up due 2025-01", output)
         self.assertIn("p95 latency: 410 → 238 ms (measured", output)
+
+    def test_render_shows_origin(self):
+        self.write_acc(self.acc(origin="self_initiated"))
+        output = render.render(careerlib.load_record(self.career)[0], "2025-06-01")
+        self.assertIn("performance · self initiated · ", output)
 
     def test_open_items_show_structural_gaps(self):
         output = render.render(careerlib.load_record(self.career)[0], "2025-06-01")

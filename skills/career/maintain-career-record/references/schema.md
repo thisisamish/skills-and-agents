@@ -41,6 +41,7 @@ One file per accomplishment, named `<id>.yaml`.
 | `period` | `{start, end}` as `YYYY-MM` or `YYYY`; `end` may be `present`. Leave empty when unknown (validate.py warns, because a resume needs at least a year). Never copy the role's dates in as a guess. |
 | `title` | Short internal title. |
 | `category` | One of: feature, defect, investigation, performance, reliability, security, testing, automation, refactoring, developer_productivity, documentation, architecture, production_support, leadership, collaboration, learning, other. |
+| `origin` | Optional. Who started the work: `assigned` (came through a board, tracker or manager), `self_initiated` (the user spotted the need and started it), `requested_by_others` (a teammate, lead or other team asked for the user's help; mentoring and unblocking usually land here). Self-initiated and requested work is often on no board, so it's easily forgotten; resume and interview skills use this field to find initiative and mentoring stories. Leave empty if unclear. |
 | `situation` | Context: the problem or need, and why it mattered. |
 | `task` | The user's own responsibility. |
 | `actions` | List of what the user personally did. Never the team's work. |

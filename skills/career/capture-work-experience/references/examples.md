@@ -61,6 +61,7 @@ engagement_id: eng-1
 period: {start: "2025-01", end: "2025-03"}
 title: Cut settlement report latency
 category: performance
+origin: assigned
 situation: Settlement reports for the banking client's operations team took too long to use interactively.
 task: Make the report endpoint fast enough for interactive use without changing its output.
 actions:
