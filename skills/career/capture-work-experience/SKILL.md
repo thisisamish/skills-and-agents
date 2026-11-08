@@ -49,6 +49,7 @@ Read the user's description and list each distinct piece of work. **More than on
 - **Several pieces:** show the list and wait for the user to confirm or correct it before interviewing.
 - **One obvious piece:** say how you read it, and ask the first interview questions in the same message.
 - **Clearly an update** ("I got the metric for…", "after the release…"): find the matching record first (step 3), then interview only for the new information.
+- **From the work log** (`career/log.md`, schema.md section 8): when the user asks to process the log, or when it has uncaptured entries and the user is capturing anyway, read the unticked entries, group the ones that belong to the same piece of work or theme, and treat each group as one piece to split and interview as usual. A log line is a prompt, not a confirmed fact.
 
 ### 2. Interview
 
@@ -103,7 +104,7 @@ Show the record summary and the bullet text. The record becomes `confirmed` (or 
 1. Get a timestamp: `PY SCRIPTS/timestamp.py`.
 2. Append one entry to `career/NOTES.md` with the user's information, in sanitized form, and the record changes. Use the format in schema.md section 7.
 3. For a new record, run `PY SCRIPTS/new_id.py`, copy `../maintain-career-record/templates/accomplishment.yaml` to `career/data/accomplishments/<id>.yaml`, and fill it in. For an update, edit the existing file and set `updated`. Either way, add the timestamp to `sources`.
-4. Link the technologies as evidence in `career/data/skills.yaml`, adding skills that are missing (leave `depth` unset unless the user has said it). If you set `similar_to`, add the link to both records.
+4. Link the technologies as evidence in `career/data/skills.yaml`, adding skills that are missing (leave `depth` unset unless the user has said it). If you set `similar_to`, add the link to both records. If the work came from `career/log.md`, tick those entries and append ` → <id>`.
 5. `PY SCRIPTS/validate.py career`. Fix every error and re-run until it reports 0 errors. If an error says a bullet uses a number that isn't in the record, either add the number with the user or remove it from the bullet; never just make the check pass.
 6. `PY SCRIPTS/render.py career`.
 7. Tell the user what was saved, its status, any gaps, and any follow-up worth setting (for example "the error rate a month after launch"). Record that follow-up in `follow_up`.
@@ -112,5 +113,6 @@ Show the record summary and the bullet text. The record becomes `confirmed` (or 
 
 - **The role or employer isn't in employment.yaml:** add it first, following maintain-career-record, then save the accomplishment.
 - **"No Python at …":** a stale virtual environment is active. Run `PY` by its full path, or ask the user to deactivate it.
+- **The user only wants to note something for later** ("log this", "remind me I did this"): append one line to `career/log.md` in its format, with roles instead of names, and don't interview. No NOTES.md entry is needed until it's captured.
 - **The user wants to skip questions and "just write the bullet":** draft it from what's known, mark the record `draft` or `incomplete` with gaps, and say clearly which parts are missing. Don't fill them in.
 - **Sibling folders are missing:** the suite isn't fully installed; see setup-career-skills.

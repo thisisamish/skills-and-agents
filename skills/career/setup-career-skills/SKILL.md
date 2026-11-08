@@ -69,7 +69,7 @@ Otherwise:
 PY SCRIPTS/init.py .
 ```
 
-`init.py` creates `career/data/`, `career/NOTES.md` and `career/.gitignore`, which ignores `.venv/`. It never overwrites existing files, so it's safe to re-run.
+`init.py` creates `career/data/`, `career/NOTES.md`, `career/log.md` (the user's running work log) and `career/.gitignore`, which ignores `.venv/`. It never overwrites existing files, so it's safe to re-run.
 
 ## 5. Verify
 
@@ -85,6 +85,7 @@ Validation must report 0 errors. A blank record validates cleanly. If it doesn't
 
 - If legacy data was found and not migrated, remind the user that maintain-career-record can migrate it whenever they want.
 - Otherwise, suggest starting with maintain-career-record for profile, employers and roles, then capture-work-experience for individual pieces of work.
+- Point out `career/log.md`: a line there whenever they help someone, start something unasked, or see a result land, so work that's on no board isn't forgotten.
 - Remind the user to commit `career/`. `.venv/` stays out of git.
 
 Report what was created, which Python and PyYAML versions are in use, and the validation result.

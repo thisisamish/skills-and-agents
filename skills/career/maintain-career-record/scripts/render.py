@@ -97,6 +97,10 @@ def open_items(record, accomplishments, today):
             for gap in items(entry.get("gaps")):
                 lines.append(f"- Gap ({key}: {text(entry.get(field))}): {gap}")
 
+    pending = record.get("log_pending") or []
+    if pending:
+        lines.append(f"- Work-log entries not yet captured ({len(pending)}): see log.md")
+
     # Structural gaps.
     skill_names = {text(s.get("name")).lower() for s in record.get("skills", {}).get("skills") or []}
     used = sorted({text(t) for a in accomplishments for t in as_list(a.get("technologies"))

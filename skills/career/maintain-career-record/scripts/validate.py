@@ -134,7 +134,7 @@ class Validator:
             self.report.error(self.career_dir / "NOTES.md", "missing. Run init.py to restore it.")
 
         for name, data in record.items():
-            if name == "accomplishments":
+            if name in ("accomplishments", "log_pending"):  # not data files
                 continue
             where = f"data/{name}.yaml"
             if not isinstance(data, dict):
