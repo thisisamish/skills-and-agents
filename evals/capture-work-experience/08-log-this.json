@@ -1,0 +1,17 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "Log this for later, no time now: today I helped Priya from the testing team reproduce a crash in the alarm module and we found it was a race in the message handler.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Appends one line to career/log.md in its format (date · origin · what · result) without interviewing",
+    "Uses a role ('tester' or 'testing team member'), not the name Priya",
+    "Does not create an accomplishment or a NOTES.md entry yet",
+    "Uses only the facts given; result kept as stated"
+  ]
+}

@@ -3,7 +3,7 @@ name: capture-work-experience
 description: Captures a software engineer's work as STAR (Situation, Task, Action, Result) accomplishments with evidence-backed resume bullets, and saves them into the career record kept by maintain-career-record. Splits descriptions that mix several pieces of work, interviews the user for missing details without inventing any, and checks every bullet before saving. Use when the user says "save this experience", asks for a resume bullet or STAR bullet, pastes a description of work they did, adds a piece of work to their career record, or gives a missing metric, detail or correction for an existing accomplishment. Also use it to backfill a lot of past work from an inventory, or to log or process quick notes in career/log.md, including help given to teammates and self-initiated work that's on no board. Profile, education, employers, roles and personal projects belong to maintain-career-record.
 compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Needs Python 3.9+ with PyYAML in career/.venv, created by setup-career-skills.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
   suite: career
 ---
 

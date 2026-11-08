@@ -9,6 +9,12 @@ Status: Phases 0–5 implemented on 2026-11-07. The future skills (`build-resume
 - **New script:** `timestamp.py` gives NOTES.md headings the real local time.
 - **Bytecode:** scripts never write `__pycache__` into the skill folder.
 
+**Changes on 2026-11-08 (plugin 0.3.0), from using the suite on a real record rebuild:**
+- **Off-board work.** Accomplishments gain an optional `origin` (`assigned`, `self_initiated`, `requested_by_others`). Recurring help (onboarding, unblocking, refinement) is captured as one theme accomplishment with specific instances, not one record per instance. Reviews ask about work that's on no board, using prompts adapted from the brag-document template in the research notes.
+- **Work log.** `career/log.md`, created by `init.py`, holds quick one-line notes that capture-work-experience processes later. render.py counts uncaptured entries under Open items.
+- **Backfill.** capture-work-experience gains `references/backfill.md` and `templates/inventory.md`: inventory first (four buckets by who started the work), then metric suggestions, then collection, then capture row by row.
+- **Complete, not curated.** The record keeps every fact, including unflattering ones such as older technologies or the system's age. Presentation for a target role happens only in bullets (new section in `bullet-rules.md`). Capture always asks about system context and design decisions. The research has no evidence on screener bias toward particular technology names, and the guidance says so.
+
 ## 1. Goal
 
 Help a software engineer keep a structured, living record of their impactful work, and turn that record into resumes for switching jobs. The primary user has 2–3 years of experience at an Indian IT services company and is targeting SDE-1 (possibly SDE-2) roles at Indian product companies, startups and MNC offices/GCCs.

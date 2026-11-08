@@ -1,0 +1,18 @@
+{
+  "skills": [
+    "capture-work-experience",
+    "setup-career-skills",
+    "maintain-career-record"
+  ],
+  "query": "I've been at my company for over a year and never recorded anything. I want to list everything I've done and build my record properly from scratch.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Follows references/backfill.md rather than starting a single-item capture",
+    "Offers to create career/inventory.md from the inventory template",
+    "Explains the four buckets and the 'who started it?' question, prompting for help given and self-initiated work",
+    "States the ground rules (list first, blank unknown dates, roles not names, within employer policy)",
+    "Does not create accomplishments before the inventory is filled"
+  ]
+}

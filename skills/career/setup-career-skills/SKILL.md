@@ -3,7 +3,7 @@ name: setup-career-skills
 description: Sets up the career skills suite in the user's repository. Checks that every career skill is installed, creates a Python virtual environment for the record with uv (PyYAML only, never a global install), creates the career/ record from blank templates, and detects an old CMD.md, whose migration it hands to maintain-career-record. Use when the user asks to set up, install or initialise career tracking, runs setup-career-skills, or when another career skill reports that career/ or its Python environment is missing.
 compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Uses uv (preferred) or Python 3.9+.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   suite: career
 ---
 

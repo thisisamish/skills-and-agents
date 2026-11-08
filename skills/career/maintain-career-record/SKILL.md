@@ -3,7 +3,7 @@ name: maintain-career-record
 description: Maintains a software engineer's evidence-backed career record (profile, employers and roles, skills, education, projects, certifications, recognition, learning, goals) as structured YAML in the user's repo, with an append-only audit log and a generated CAREER.md view. Use when the user wants to add, correct or review career details, update their profile, education, skills or projects, review evidence gaps, or migrate an old CMD.md. For saving a specific piece of work as STAR resume bullets, use capture-work-experience instead; for first-time setup, use setup-career-skills.
 compatibility: Part of the career skills suite (setup-career-skills, maintain-career-record, capture-work-experience); install all of them together. Needs Python 3.9+ with PyYAML in career/.venv, created by setup-career-skills.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
   suite: career
 ---
 

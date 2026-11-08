@@ -1,0 +1,17 @@
+{
+  "skills": [
+    "maintain-career-record",
+    "setup-career-skills",
+    "capture-work-experience"
+  ],
+  "query": "It's been three months, let's do a review of my career record.",
+  "files": [
+    "evals/fixtures/sample-repo"
+  ],
+  "expected_behavior": [
+    "Runs render.py and works through the Open items section",
+    "Asks about work that's on no board (help given, self-initiated work, recurring questions, docs, onboarding or interviewing, praise)",
+    "Routes any described work to capture-work-experience rather than writing accomplishments itself",
+    "Invents no content"
+  ]
+}

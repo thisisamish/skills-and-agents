@@ -65,3 +65,7 @@ Wording fixes from the re-check:
 - clearer `measured` vs `reported` definitions;
 - leave a new skill's `depth` unset;
 - don't create an accomplishment whose role is unknown.
+
+## 2026-11-08: plugin 0.3.0 (capture and maintain v2.1.0 / setup v1.1.0) — not yet run
+
+New scenarios added and not yet evaluated: capture 06 (recurring help), 07 (backfill start), 08 (log this); maintain 04 (review asks about off-board work). Four new capture trigger queries were added to `triggers.md`. The fixture gained `career/log.md`. Re-run triggering and all scenarios before relying on the 2026-11-07 results for this version.
